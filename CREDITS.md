@@ -1,18 +1,26 @@
 # Credits
 
+## Design and development
+
+Game idea, mechanics, interaction design, and overall design by Abdullah Noor.
+
+## Art
+
+- **Runner sprite:** by [[ElvGames](https://elvgames.com/game-assets/)]. Used under the asset's license for non-commercial use. Thank you, ElvGames.
+
+## Libraries
+
+- [p5.js](https://p5js.org/) and p5.sound
+- [ml5.js](https://ml5js.org/) faceMesh, used for face landmark tracking. The head-tilt controller was adapted from the ml5.js faceMesh example.
+
 ## AI assistance
 
-I used **Claude Code** (Anthropic) for parts of this project:
+I used **Claude Code** to help adapt the ml5.js faceMesh example into the head-tilt controller (`headtilt.js`). The game idea, the mechanics, and the rest of the design are mine.
 
-- **`headtilt.js`**: Claude helped me adapt ml5.js's faceMesh example into the head-tilt controller. That covers turning face landmarks into a tilt angle, smoothing the angle, the calibration steps (straight / left / right), slowly tracking the player's resting posture, and pausing when the face is lost.
+## Feedback
 
-## My work
+Thank you to the classmates and friends who reviewed Tilt Trail. Their feedback shaped the return-to-neutral rule and the calibration tilt meter, and confirmed the keyboard fallback as essential.
 
-Everything else is mine: the game idea, the decision to build it for kids who can't easily use their hands, the game mechanics (lanes, coins, obstacles, lives, difficulty levels, speed-up), and the rest of the code and design. However, as I installed Claude code in my VS Code, I had the code cleaned up and commented by it as well, so it is easier to follow.
+## Context
 
-## Other resources
-
-- [ml5.js faceMesh](https://docs.ml5js.org/#/reference/facemesh): the face-tracking model and the example `headtilt.js` started from
-- [p5.js](https://p5js.org/) and p5.sound
-- Runner sprite: ElvGames
-- More references are listed in the Resources section of `index.html`
+Built for an interactive computing course (CSCI-UA 380) at NYU, Fall 2026.
