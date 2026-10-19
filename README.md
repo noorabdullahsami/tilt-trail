@@ -47,7 +47,7 @@ The camera video never leaves your browser. Nothing is recorded and nothing is u
 
 ## Testing
 
-Tilt Trail is designed for kids with limited hand movement, I had my little sister and cousins try this in the testing phase but they could not give me a concrete feedback (they just babies). Feedback so far has come from classmates and friends. Tracking is also weaker in poor lighting.
+Tilt Trail is designed for kids with limited hand movement, I had my little sister and cousins try this in the testing phase but they could not give me a concrete feedback (at their age they can't give structured feedback). Feedback so far has come from classmates and friends. Tracking is also weaker in poor lighting.
 
 ## What's next
 
