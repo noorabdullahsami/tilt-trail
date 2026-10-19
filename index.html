@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tilt Trail</title>
+  <link rel="icon" href="data:,">  <!-- empty icon, so the browser does not ask for favicon.ico -->
+
+  <!-- One Google Font: Fredoka (round and friendly, easy to read) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Libraries, in this order: p5.js 2.x, p5.sound, ml5.js 1.x -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+
+  <!-- Our code: head tilt first, then the classes, then the main sketch -->
+  <script src="headtilt.js"></script>
+  <script src="classes.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Tilt Trail</h1>
+    <p class="pitch">A jungle temple runner you steer by tilting your head, made for kids who can't easily use their hands.</p>
+  </header>
+
+  <main>
+    <!-- The game card: p5 puts the canvas in here with canvas.parent("game-container") -->
+    <section id="game-container" class="game-card" aria-label="Tilt Trail game">
+      <div class="controls">
+        <div class="readouts" aria-live="polite">
+          <p>Score <span id="score">0</span></p>
+          <p>Lives <span id="lives">3</span></p>
+          <p>High score <span id="high-score">0</span></p>
+        </div>
+
+        <button id="start-button" class="big-button">Start</button>
+
+        <label for="control-mode">Control mode</label>
+        <select id="control-mode">
+          <option value="head">Head tilt (camera)</option>
+          <option value="keyboard">Keyboard or switch</option>
+        </select>
+
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        <label for="sensitivity">Tilt sensitivity: <span id="sensitivity-value">30%</span></label>
+        <input type="range" id="sensitivity" min="15" max="70" value="30">
+        <p class="hint">Lower = a smaller tilt switches lanes.</p>
+
+        <div class="button-row">
+          <button id="recalibrate-button">Recalibrate</button>
+          <button id="mute-button" aria-pressed="false">Sound: On</button>
+        </div>
+
+        <p class="privacy">🔒 The camera video never leaves your browser. Nothing is recorded or uploaded.</p>
+      </div>
+    </section>
+
+    <section class="info-card">
+      <h2>How to play</h2>
+      <ul>
+        <li><strong>Goal:</strong> run up the temple path and collect as many <strong>coins</strong> as you can. Each coin is +1 point.</li>
+        <li><strong>Watch out:</strong> <strong>spike balls and logs</strong> are obstacles. Hitting one costs a life, and you blink for a moment so you can get away. You have 3 lives.</li>
+        <li><strong>Head tilt:</strong> tilt your head toward your left shoulder to move one lane left, and toward your right shoulder to move right. Come back to straight before the next move. One tilt = one lane.</li>
+        <li><strong>Calibration:</strong> the first time, the game asks you to look straight, then tilt left, then tilt right. It learns how far <em>you</em> can comfortably tilt. Use <strong>Recalibrate</strong> any time, and the <strong>Tilt sensitivity</strong> slider if moves feel too hard or too easy.</li>
+        <li><strong>Keyboard or switch:</strong> <kbd>A</kbd>/<kbd>D</kbd> or <kbd>←</kbd>/<kbd>→</kbd> switch lanes in both modes. Many accessibility switches send these key presses. <kbd>P</kbd> pauses.</li>
+        <li><strong>Can't see you?</strong> If the camera loses your face, the game pauses by itself and waits for you.</li>
+        <li>The camera needs a secure page (https) or a local server. Allow camera access when your browser asks.</li>
+      </ul>
+    </section>
+
+    <section class="info-card">
+      <h2>About / design process</h2>
+      <h3>Inspiration</h3>
+      <p class="todo">I replicated game mechanics from Temple Run, Subway Surfers to create this game.</p>
+      <h3>Why head tilt</h3>
+      <p class="todo">This game is primarily designed for accessibility, allowing players with limited mobility to navigate the game using head movements.</p>
+      <h3>The new technique: ml5 faceMesh</h3>
+      <p class="todo">I used the ml5.js faceMesh library to detect and track facial landmarks, which are then used to determine the player's head tilt and control the game.</p>
+      <h3>What I'd do next</h3>
+      <p class="todo">I would like to improve the accuracy of the faceMesh detection and add more features to the game, such as power-ups and different levels.</p>
+    </section>
+
+    <section class="info-card">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="https://docs.ml5js.org/#/reference/facemesh">ml5.js faceMesh reference</a></li>
+        <li><a href="https://ml5js.org/blog/using-ml5-with-p5-2/">ml5.js blog: Using ml5.js with p5.js 2.0</a></li>
+        <li><a href="https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker">Google MediaPipe Face Landmarker guide</a></li>
+        <li><a href="https://github.com/google/project-gameface">Project GameFace (Google)</a></li>
+        <li><a href="https://p5js.org/reference/p5/atan2/">p5.js reference: atan2()</a></li>
+        <li><a href="https://p5js.org/reference/p5/lerp/">p5.js reference: lerp()</a></li>
+        <li><strong>Art credits:</strong> Runner sprite: ElvGames</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Tilt Trail · CSCI-UA 380 Assignment 3</p>
+  </footer>
+</body>
+</html>
